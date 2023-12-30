@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -58,10 +59,15 @@ public class DoctorWorkScheduleService {
 
             Boolean isBooked = false;
 
+            // List<BookSchedule> bookSchedules = doctorWorkSchedule.getBookSchedule();
+            // bookSchedules.sort(Comparator.comparing(BookSchedule::getId,Comparator.reverseOrder()));
+            // BookSchedule bookSchedule = null;
+            // if (bookSchedules.size()>0){
+            //     bookSchedule = bookSchedules.get(0);
+            // }
             BookSchedule bookSchedule = doctorWorkSchedule.getBookSchedule();
             if (Objects.nonNull(bookSchedule) &&
-                    (bookSchedule.getStatusBook().equals(StatusBook.CHUA_KHAM) ||
-                            bookSchedule.getStatusBook().equals(StatusBook.DA_KHAM))) {
+                    (bookSchedule.getStatusBook().equals(StatusBook.CHUA_KHAM) || bookSchedule.getStatusBook().equals(StatusBook.DA_KHAM))) {
                 isBooked = true;
             }
 

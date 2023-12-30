@@ -17,9 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtProvider {
     private static final String SECRET = "secret";
 
-    private static final long TIME_EXPIRATION = 6000 * 60 * 1000;//tgian tao token
+    private static final long TIME_EXPIRATION = 6000 * 60 * 1000;//thời gian hết hạn token:100h
 
-    public String generateToken(Integer id, String role) {//sau khi login goi
+    public String generateToken(Integer id, String role) {//sau khi login thành công-> gen token để trả về
         Date issuedAt = new Date();
         Date expirationAt = new Date(issuedAt.getTime() + TIME_EXPIRATION);
 

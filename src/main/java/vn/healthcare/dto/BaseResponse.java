@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@Builder
+@Builder 
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseResponse {

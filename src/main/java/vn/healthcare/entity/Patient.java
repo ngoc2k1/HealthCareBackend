@@ -63,7 +63,7 @@ public class Patient {
     @Column(length = 12)
     private String identityCard;
 
-    @Column(length = 15)
+    // @Column(length = 15)
     private String healthInsurance;
 
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)

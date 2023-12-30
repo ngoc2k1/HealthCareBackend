@@ -24,7 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 import java.util.Collections;
 
-
+//xác thực, quản lý quyền truy cập
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

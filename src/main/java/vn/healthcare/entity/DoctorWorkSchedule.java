@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
@@ -28,9 +29,9 @@ public class DoctorWorkSchedule {
     private Doctor doctor;
 
     @JsonIgnore
+        // @OneToMany(mappedBy = "doctorWorkSchedule", fetch = FetchType.LAZY)
     @OneToOne(mappedBy = "doctorWorkSchedule")
     private BookSchedule bookSchedule;
-
     private Integer price;
 
     private LocalDateTime workStartAt;

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DoctorWorkScheduleRepository extends JpaRepository<DoctorWorkSchedule, Integer> {
+        //sql thuần(khi jpql không hỗ trợ) dựa theo bảng trong databse: nativeQuery=true
     @Query(value = "select distinct DATE(d.work_start_at) from doctor_work_schedule as d where d.doctor_id = :doctorId " +
             "and d.work_start_at > :current",
             nativeQuery = true)

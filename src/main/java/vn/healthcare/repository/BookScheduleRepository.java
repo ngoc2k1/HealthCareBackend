@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookScheduleRepository extends JpaRepository<BookSchedule, Integer> {
+        // tự generate dựa trên tên method
     Page<BookSchedule> findAllByDoctorId(Integer doctorId, Pageable pageable);
 
     Optional<BookSchedule> findByIdAndDoctorId(Integer id, Integer doctorId);

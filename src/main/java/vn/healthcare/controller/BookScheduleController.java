@@ -18,7 +18,7 @@ public class BookScheduleController {
     private final BookScheduleService bookScheduleService;
 
     // Api của BS xem danh sách lịch khám
-    @PreAuthorize("hasAuthority('DOCTOR')")
+    @PreAuthorize("hasAuthority('DOCTOR')")//chi BS
     @GetMapping("/list-book-schedule-by-doctor")
     public PageResponse getAllScheduleByDoctor(@RequestParam(defaultValue = "1") Integer page) {
         return bookScheduleService.getAllScheduleByDoctor(page);
@@ -32,14 +32,14 @@ public class BookScheduleController {
         return bookScheduleService.getAllScheduleByPatient(page);
     }
 
-    // Api của BN xem chi tiết lịch khám
+    // Api của BN,BS xem chi tiết lịch khám
     @PreAuthorize("isAuthenticated()")//bat buoc login
     @GetMapping("/book-schedule/detail/{id}")
     public BaseResponse getDetailSchedule(@PathVariable Integer id) {
         return bookScheduleService.getBookScheduleDetail(id);
     }
 
-    @PreAuthorize("hasAuthority('DOCTOR')")//chi BS
+    @PreAuthorize("hasAuthority('DOCTOR')")
     @PutMapping("/book-schedule/confirm/{id}")
     public BaseResponse confirmBookSchedule(@PathVariable Integer id) {
         return bookScheduleService.confirm(id);

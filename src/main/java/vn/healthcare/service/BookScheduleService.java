@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class BookScheduleService {
@@ -216,15 +218,17 @@ public class BookScheduleService {
                 .build();
     }
 
-
+@Transactional
     public BaseResponse createSchedule(CreateScheduleRequest request) {
         Integer patientId = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Optional<BookSchedule> bookScheduleOptional =
                 bookScheduleRepository.findByDoctorWorkScheduleId(request.getDoctorWorkScheduleId());
-        if(bookScheduleOptional.isPresent()) {
-
-            throw new ConflictException("schedule", "Lịch này đã được đặt. Vui lòng chọn lịch khác");
+                
+        if(bookScheduleOptional.isPresent()&& bookScheduleOptional.get().getStatusBook().equals(StatusBook.DA_HUY)) {
+                bookScheduleRepository.deleteById(bookScheduleOptional.get().getId());
+        // if(bookScheduleOptional.isPresent()&& !bookScheduleOptional.get().getStatusBook().equals(StatusBook.DA_HUY)) {
+        //     throw new ConflictException("schedule", "Lịch này đã được đặt. Vui lòng chọn lịch khác");
         }
 
         DoctorWorkSchedule doctorWorkSchedule = doctorWorkScheduleRepository

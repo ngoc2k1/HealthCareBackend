@@ -14,7 +14,8 @@ import javax.validation.Valid;
 
 @RestController//khai bao api
 @RequestMapping("/v1")
-@RequiredArgsConstructor
+@RequiredArgsConstructor //auto tạo constructor của class AdminController chứa field adminService có final 
+
 public class AdminController {
     private final AdminService adminService;
 

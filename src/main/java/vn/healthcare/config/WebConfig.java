@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("http://localhost:5174")
+        registry.addMapping("/**").allowedOrigins("http://localhost:5174") //địa chỉ của frontend web cho admin
                 .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
                 .allowedHeaders("*");
     }

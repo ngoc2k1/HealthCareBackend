@@ -68,7 +68,6 @@ public class DoctorController {
         return doctorService.changePassword(request);
     }
 
-    // New
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/list-doctor")
     public PageResponse getAllDoctorByPage(@RequestParam(defaultValue = "1") Integer page) {
@@ -76,14 +75,12 @@ public class DoctorController {
     }
 
 
-    // New
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/doctor/{id}")
     public BaseResponse getDoctorById(@PathVariable Integer id) {
         return doctorService.getDoctorById(id);
     }
 
-    // New
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/doctor/update/{id}")
     public BaseResponse updateDoctor(@PathVariable Integer id,
@@ -91,14 +88,13 @@ public class DoctorController {
         return doctorService.updateDoctor(id, request);
     }
 
-    // New
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/doctor/create")
     public ResponseEntity<BaseResponse> createDoctor(@Valid @RequestBody UpdateDoctorRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(doctorService.createDoctor(request));
     }
 
-    // New
+   
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/doctor/delete/{id}")
     public BaseResponse deleteSpecialty(@PathVariable Integer id) {

@@ -18,10 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @Data//get set
 @Entity
-@Builder//tao 1 bien -> ....Builder Pattern
+@Builder
 public class BookSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//id tu tang tu 1
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//id tăng từ 1
     private Integer id;
 
     @ManyToOne
@@ -32,12 +32,15 @@ public class BookSchedule {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
+    // @ManyToOne
     @OneToOne
     @JoinColumn(name = "doctor_work_schedule_id")
     private DoctorWorkSchedule doctorWorkSchedule;
 
-    @OneToMany(mappedBy = "bookSchedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)//patientHis bi xoa theo
-    private List<PatientMedicalHistory> patientMedicalHistories;//k tu dong query Histo khi query Book -> cham performance
+    @OneToMany(mappedBy = "bookSchedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //bookSchedule bị xóa thì patientHistory bị xóa theo trong database
+    //k tự động query patientHistory khi query bookSchedule -> chậm performance
+    private List<PatientMedicalHistory> patientMedicalHistories;
 
     @Enumerated(EnumType.STRING)
     private StatusBook statusBook;

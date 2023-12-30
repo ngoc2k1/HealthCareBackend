@@ -62,7 +62,7 @@ public class Doctor {
 
     private String identityCard;
 
-    @Column(length = 15)
+    // @Column(length = 15)
     private String healthInsurance;
 
     private LocalDateTime deleteAt;

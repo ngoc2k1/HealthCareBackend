@@ -15,7 +15,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)//yêu cầu không hợp lệ
     @ExceptionHandler(BadRequestException.class)
     public BaseResponse handleBadRequest(BadRequestException e) {
         return BaseResponse.builder()
@@ -25,7 +25,7 @@ public class ApplicationExceptionHandler {
                 .build();
     }
     
-    @ExceptionHandler(AccessDeniedException.class)
+    @ExceptionHandler(AccessDeniedException.class)//BS gọi API BN
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public BaseResponse handleAuthenticationException(AccessDeniedException ex) {
         return BaseResponse.builder()
@@ -34,7 +34,7 @@ public class ApplicationExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(BindException.class)
+    @ExceptionHandler(BindException.class)//check @notblank cho field
     public Map<String, String> handleBindException(BindException e) {
         Map<String, String> errors = new HashMap<>();
         e.getBindingResult().getAllErrors().forEach((error) -> {
@@ -46,7 +46,7 @@ public class ApplicationExceptionHandler {
     }
 
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.NOT_FOUND)//không tìm thấy
     @ExceptionHandler(NotFoundException.class)
     public BaseResponse handleNotFound(NotFoundException e) {
         return BaseResponse.builder()
@@ -56,7 +56,7 @@ public class ApplicationExceptionHandler {
     }
 
 
-    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseStatus(HttpStatus.CONFLICT)//lịch đã được đặt, email/sđt đã tồn tại
     @ExceptionHandler(ConflictException.class)
     public BaseResponse handleConflict(ConflictException e) {
         return BaseResponse.builder()

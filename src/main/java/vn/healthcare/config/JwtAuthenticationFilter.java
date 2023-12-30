@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+//Mỗi khi call API đều chạy qua file này để lấy token
+//lúc login sẽ tạo jwt là jwtProvider
 @RequiredArgsConstructor
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
