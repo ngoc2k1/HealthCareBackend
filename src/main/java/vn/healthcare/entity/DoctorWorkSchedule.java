@@ -30,7 +30,7 @@ public class DoctorWorkSchedule {
 
     @JsonIgnore
         // @OneToMany(mappedBy = "doctorWorkSchedule", fetch = FetchType.LAZY)
-    @OneToOne(mappedBy = "doctorWorkSchedule")
+    @OneToOne(mappedBy = "doctorWorkSchedule", cascade = CascadeType.ALL)
     private BookSchedule bookSchedule;
     private Integer price;
 

@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class AdminController {
     private final AdminService adminService;
 
-    @PostMapping("/admin/login")
+    @PostMapping("/admin/login")//service trả nhiều hơn 1 mã lỗi
     public ResponseEntity<BaseResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
         BaseResponse response = adminService.login(loginRequest);
         return ResponseEntity.status(response.getCode()).body(response);

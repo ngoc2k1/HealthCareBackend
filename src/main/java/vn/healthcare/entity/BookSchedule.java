@@ -32,7 +32,6 @@ public class BookSchedule {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    // @ManyToOne
     @OneToOne
     @JoinColumn(name = "doctor_work_schedule_id")
     private DoctorWorkSchedule doctorWorkSchedule;

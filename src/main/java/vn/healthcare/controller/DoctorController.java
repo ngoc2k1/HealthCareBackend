@@ -18,7 +18,7 @@ public class DoctorController {
     private final DoctorService doctorService;
     private final BookScheduleService bookScheduleService;
 
-    @GetMapping("/doctor-by-specialty/{id}")
+    @GetMapping("/doctor-by-specialty/{id}")//service trả 1 mã mặc định 200
     public PageResponse getDoctorBySpecialty(@PathVariable Integer id,
                                              @RequestParam(defaultValue = "1") Integer page) {
         return doctorService.getAllDoctorBySpecialtyAndPage(id, page);
@@ -89,7 +89,7 @@ public class DoctorController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/doctor/create")
+    @PostMapping("/doctor/create")//service trả 1 mã lỗi tường minh
     public ResponseEntity<BaseResponse> createDoctor(@Valid @RequestBody UpdateDoctorRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(doctorService.createDoctor(request));
     }

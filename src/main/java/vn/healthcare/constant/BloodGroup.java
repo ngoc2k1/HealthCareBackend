@@ -1,5 +1,5 @@
 package vn.healthcare.constant;
 
 public enum BloodGroup {
-    A,B,AB,O
+    A,B,AB,O,X
 }

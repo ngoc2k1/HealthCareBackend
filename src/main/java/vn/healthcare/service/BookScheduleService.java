@@ -88,8 +88,8 @@ public class BookScheduleService {
 
             throw new BadRequestException("Lịch đã khám hoặc đã hủy. Không thể hủy");
         }
-        bookSchedule.setStatusBook(StatusBook.DA_HUY);
-        bookScheduleRepository.save(bookSchedule);
+        // bookSchedule.setStatusBook(StatusBook.DA_HUY);
+        bookScheduleRepository.deleteById(bookScheduleOptional.get().getId());
 
         return BaseResponse.builder()
                 .msg("Hủy lịch thành công")
@@ -225,11 +225,6 @@ public class BookScheduleService {
         Optional<BookSchedule> bookScheduleOptional =
                 bookScheduleRepository.findByDoctorWorkScheduleId(request.getDoctorWorkScheduleId());
                 
-        if(bookScheduleOptional.isPresent()&& bookScheduleOptional.get().getStatusBook().equals(StatusBook.DA_HUY)) {
-                bookScheduleRepository.deleteById(bookScheduleOptional.get().getId());
-        // if(bookScheduleOptional.isPresent()&& !bookScheduleOptional.get().getStatusBook().equals(StatusBook.DA_HUY)) {
-        //     throw new ConflictException("schedule", "Lịch này đã được đặt. Vui lòng chọn lịch khác");
-        }
 
         DoctorWorkSchedule doctorWorkSchedule = doctorWorkScheduleRepository
                 .findById(request.getDoctorWorkScheduleId())
