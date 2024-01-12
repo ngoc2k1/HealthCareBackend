@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import vn.healthcare.constant.StatusBook;
 import vn.healthcare.dto.*;
 import vn.healthcare.entity.*;
@@ -26,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -71,7 +72,7 @@ public class BookScheduleService {
                 .currentPage(page)
                 .build();
     }
-    
+        @Transactional
      public BaseResponse cancelSchedule(Integer scheduleId) {
         Integer patientId = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -88,9 +89,8 @@ public class BookScheduleService {
 
             throw new BadRequestException("Lịch đã khám hoặc đã hủy. Không thể hủy");
         }
-        // bookSchedule.setStatusBook(StatusBook.DA_HUY);
-        bookScheduleRepository.deleteById(bookScheduleOptional.get().getId());
-
+        patientMedicalHistoryRepository.deleteByBookScheduleId(scheduleId);
+        bookScheduleRepository.deleteByBookScheduleId(scheduleId);
         return BaseResponse.builder()
                 .msg("Hủy lịch thành công")
                 .code(200)

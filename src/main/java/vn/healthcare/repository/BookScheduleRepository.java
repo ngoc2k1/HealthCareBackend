@@ -3,7 +3,10 @@ package vn.healthcare.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
+
 import vn.healthcare.constant.StatusBook;
 import vn.healthcare.entity.BookSchedule;
 
@@ -35,4 +38,8 @@ public interface BookScheduleRepository extends JpaRepository<BookSchedule, Inte
             "FUNCTION('TIMESTAMPDIFF', HOUR, FUNCTION('CURRENT_TIMESTAMP'), " +
             "b.doctorWorkSchedule.workStartAt) between 0 and 8 and b.statusBook = :status")
     List<BookSchedule> findAllByPatientIdAndStatusAndBefore8Hour(Integer patientId, StatusBook status);
+
+    @Modifying
+    @Query(value = "delete from BookSchedule as b where b.id = :id")
+    void deleteByBookScheduleId(Integer id);
 }

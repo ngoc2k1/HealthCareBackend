@@ -50,6 +50,7 @@ public class BookScheduleByPatientResponse {
         private String name;
         private String avatar;
         private String addressTest;
+        private String phone;
 
 
         private SpecialtyResponse specialty;
