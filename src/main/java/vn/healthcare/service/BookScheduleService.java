@@ -331,11 +331,11 @@ public class BookScheduleService {
                     bookSchedule.getPatient().getName(),
                     age,
                     bookSchedule.getPatient().getGender()));
-
+        //     if(bookSchedule.getStatusBook().equals(StatusBook.DA_HUY)) {  đã hủy xóa khỏi csdl rồi
+        //                 response.setContent("1 bệnh nhân vừa hủy lịch khám");
+        //     }
             if(bookSchedule.getStatusBook().equals(StatusBook.CHUA_KHAM)) {
                 response.setContent("1 bệnh nhân vừa đặt lịch khám");
-            } else if(bookSchedule.getStatusBook().equals(StatusBook.DA_HUY)) {
-                response.setContent("1 bệnh nhân vừa hủy lịch khám");
             }
             data.add(response);
         }
